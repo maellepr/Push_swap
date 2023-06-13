@@ -13,20 +13,18 @@ void	do_s(t_stack *stack)
 }
 
 /*
-Prend le 1er element de la pile stack_x et le met sur l'autre pile stack_y 
+Prend le 1er element de la pile src et le met sur l'autre pile dest 
 */
-t_stack*	do_p(t_stack *stack_x, t_stack *stack_y)
+void	do_p(t_stack *src, t_stack *dest)
 {
+	int	temp;
 
-	t_stack	*new;
-
-	new = malloc(sizeof(t_stack));
-	if (!new)
-		return (NULL);
-	new->value = stack_x->value;
-	new->next = stack_y->value;
-	return (new);
-	free(stack_x);
+	temp = src->value;
+	src->value = src->next->value;
+	if (dest == NULL)
+		dest = stack_new(temp);
+	else
+		stack_add_bottom(dest, stack_new(temp));
 }
 
 /*

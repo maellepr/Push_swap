@@ -39,9 +39,15 @@ int	main(int ac, char **av)
 	
 	printf("\nEtat de ma pile a avant :\n");
 	print_pile(stack_a);
-	stack_b = do_p(stack_b, stack_a);
-	printf("\nEtat de ma pile a apres do_r :\n");
+	printf("\nEtat de ma pile b avant :\n");
+	print_pile(stack_b);
+	do_p(stack_a, stack_b);
+	// stack_b = stack_a;
+	//stack_a = stack_a->next;
+	printf("\nEtat de ma pile a apres do_p :\n");
 	print_pile(stack_a);
+	printf("\nEtat de ma pile b apres do_p :\n");
+	print_pile(stack_b);
 	ft_free(stack_a);
 	return (0);
 }

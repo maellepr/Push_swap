@@ -55,7 +55,7 @@ void		write_ss(t_stack *stack_a, t_stack *stack_b);
 
 // ------------------- do_instru --------------------
 void		do_s(t_stack *stack);
-t_stack		*do_p(t_stack *stack_x, t_stack *stack_y);
+void		do_p(t_stack *src, t_stack *dest);
 void		do_r(t_stack *stack);
 
 // ------------------- check_error --------------------
