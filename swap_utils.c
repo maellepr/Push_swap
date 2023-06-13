@@ -1,5 +1,40 @@
 #include "push_swap.h"
 
+/*
+Compte longueur de la liste
+*/
+int		ft_lstsize(t_stack *stack)
+{
+	int	i;
+
+	i = 0;
+	if (!stack)
+		return (0);
+	while(stack)
+	{
+		stack = stack->next;
+		i++;
+	}
+	return (i);
+}
+
+
+/*
+Free tous les elements de la pile
+*/
+void	ft_free(t_stack	*stack)
+{
+	t_stack	*temp;
+
+	while(stack)
+	{
+		temp = stack->next;
+		free(stack);
+		stack = temp;
+	}
+
+}
+
 int	ft_strcmp(char *str1, char *str2)
 {
 	size_t	i;
