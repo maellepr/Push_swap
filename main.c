@@ -3,16 +3,20 @@
 /*
 Fonction temporaire pour afficher le contenu d'une pile
 */
-void print_pile(t_stack *stack_a)
+void print_pile(t_stack *stack)
 {
-    if (stack_a == NULL)
-        return ;
-    while (stack_a != NULL)
+	t_stack	*stack1 = stack;
+ 
+    if (stack1 == NULL)
     {
-        printf("%d\n", stack_a->value);
-    	stack_a = stack_a->next;
+        printf("Stack Underflow\n");
+        return;
     }
-    printf("\n");
+    while (stack1 != NULL)
+    {
+        printf("%d \n", stack1->value);
+        stack1 = stack1->next;
+    }
 }
 
 int	main(int ac, char **av)
@@ -36,18 +40,17 @@ int	main(int ac, char **av)
 	write (1, "No error\n", 9);
 	stack_a = fill_stack_value(ac, av);
 	stack_b = NULL;
-	
+
 	printf("\nEtat de ma pile a avant :\n");
 	print_pile(stack_a);
 	printf("\nEtat de ma pile b avant :\n");
 	print_pile(stack_b);
-	do_p(stack_a, stack_b);
-	// stack_b = stack_a;
-	//stack_a = stack_a->next;
+	write_rrb(&stack_b);
 	printf("\nEtat de ma pile a apres do_p :\n");
 	print_pile(stack_a);
 	printf("\nEtat de ma pile b apres do_p :\n");
 	print_pile(stack_b);
 	ft_free(stack_a);
+	ft_free(stack_b);
 	return (0);
 }

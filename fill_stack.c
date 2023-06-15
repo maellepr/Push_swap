@@ -15,6 +15,7 @@ void	stack_add_bottom(t_stack *stack, t_stack *new)
 	while (stack && stack->next != NULL)
 		stack = stack->next;
 	stack->next = new;
+
 }
 
 /*
@@ -27,7 +28,7 @@ t_stack	*stack_new(int nb)
 
 	new = malloc(sizeof(t_stack));
 	if (!new)
-		return (NULL);
+		return(NULL);
 	new->value = nb;
 	new->next = NULL;
 	return (new);
@@ -44,7 +45,7 @@ t_stack	*fill_stack_value(int ac, char **av)
 	i = 1;
 	while (i < ac)
 	{
-		nb = atoi(av[i]);
+		nb = ft_atoi(av[i]);
 		if (i == 1)
 			stack_a = stack_new(nb);// argv[1] = 45 donc nb = 45
 		else

@@ -15,13 +15,13 @@ int	is_sort(t_stack *stack)
 	return (1);
 }
 
-void	push_swap(t_stack *stack_a, t_stack *stack_b)
-{
-	int	size_sa;
+// void	push_swap(t_stack *stack_a, t_stack *stack_b)
+// {
+// 	int	size_sa;
 
-	size_sa = ft_lstsize(stack_a);
-	if (size_sa == 2 && !is_sort(stack_a))// dans le cas u il y a deux nb
-	{
-		write_sa(stack_a);
-	}
-}
+// 	size_sa = ft_lstsize(stack_a);
+// 	if (size_sa == 2 && !is_sort(stack_a))// dans le cas u il y a deux nb
+// 	{
+// 		write_sa(&stack_a);
+// 	}
+// }
