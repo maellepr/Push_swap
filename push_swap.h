@@ -8,13 +8,14 @@
 typedef struct s_stack
 {
 	int				value;// nombre 
-	//int				index;
+//	int				index;
 	int				pos_a;// position du nombre dans la pile a
 	int				pos_b;// position du nombre dans la pile b
-	//int				target_pos;
 	int				cost_a;// cout pour bouger un nb de la pile a a la pile b
 	int				cost_b;// cout pour bouger un nb de la pile b a la pile a
-
+//	int				min;
+//	int				max;
+//	int				median;
 	struct s_stack	*next;
 }	t_stack;
 
@@ -25,9 +26,12 @@ int			ft_strcmp(char *str1, char *str2);
 void		ft_free(t_stack	*stack);
 int			ft_lstsize(t_stack *stack);
 
-// ------------------- swap_utils --------------------
+// ------------------- swap_utils2 --------------------
 int	get_max(t_stack **stack);
 int	get_min(t_stack **stack);
+int	*make_tab(t_stack **stack, int size);
+int	sort_tab_find_med(int *tab, int size);
+int	get_median(t_stack **stack, int min);
 
 // ------------------- push_swap --------------------
 void		push_swap(t_stack **stack_a, t_stack **stack_b);

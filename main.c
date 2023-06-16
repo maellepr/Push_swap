@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mapoirie <mapoirie@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/06/16 13:42:27 by mapoirie          #+#    #+#             */
+/*   Updated: 2023/06/16 16:56:42 by mapoirie         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 /*
@@ -41,6 +53,11 @@ int	main(int ac, char **av)
 	stack_a = fill_stack_value(ac, av);
 	stack_b = NULL;
 	push_swap(&stack_a, &stack_b);
+	//int i = 0;
+	// while (stack_a)
+	// {
+	// 	write_pa(&stack_a, &stack_b);
+	// }
 	printf("\nEtat de ma pile a apres :\n\n");
 	print_pile(stack_a);
 	printf("\nEtat de ma pile b apres :\n\n");

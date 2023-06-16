@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   write_instru.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mapoirie <mapoirie@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/06/16 13:42:46 by mapoirie          #+#    #+#             */
+/*   Updated: 2023/06/16 17:37:29 by mapoirie         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 // /*
@@ -32,7 +44,7 @@ Ecrit pa puis fait pa
 void	write_pa(t_stack **stack_a, t_stack **stack_b)
 {
 	write(1, "pa\n", 3);
-	do_p(stack_a, stack_b);
+	do_p(stack_b, stack_a);
 }
 /*
 Ecrit pb puis fait pb
@@ -40,7 +52,7 @@ Ecrit pb puis fait pb
 void	write_pb(t_stack **stack_b, t_stack **stack_a)
 {
 	write(1, "pb\n", 3);
-	do_p(stack_b, stack_a);
+	do_p(stack_a, stack_b);
 }
 
 /*
