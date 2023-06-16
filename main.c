@@ -37,18 +37,13 @@ int	main(int ac, char **av)
 			return (0);
 		}
 	}
-	write (1, "No error\n", 9);
+	//write (1, "No error\n", 9);
 	stack_a = fill_stack_value(ac, av);
 	stack_b = NULL;
-
-	printf("\nEtat de ma pile a avant :\n");
+	push_swap(&stack_a, &stack_b);
+	printf("\nEtat de ma pile a apres :\n\n");
 	print_pile(stack_a);
-	printf("\nEtat de ma pile b avant :\n");
-	print_pile(stack_b);
-	write_rrb(&stack_b);
-	printf("\nEtat de ma pile a apres do_p :\n");
-	print_pile(stack_a);
-	printf("\nEtat de ma pile b apres do_p :\n");
+	printf("\nEtat de ma pile b apres :\n\n");
 	print_pile(stack_b);
 	ft_free(stack_a);
 	ft_free(stack_b);

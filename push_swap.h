@@ -5,35 +5,15 @@
 #include <stdio.h>
 #include <stdlib.h> 
 
-// typedef struct s_list
-// {
-// 	int				*nb;
-// 	struct s_list	*next;
-// }		t_list;
-
-// t_list *top = NULL;
-
-// typedef struct Element Element;
-// struct Element
-// {
-// 	int		nb;
-// 	Element	*suivant;
-// };
-
-// typedef struct Pile Pile;
-// struct Pile
-// {
-// 	Element	*premier;
-// };
-
 typedef struct s_stack
 {
-	int				value;
+	int				value;// nombre 
 	//int				index;
-	//int				pos;
+	int				pos_a;// position du nombre dans la pile a
+	int				pos_b;// position du nombre dans la pile b
 	//int				target_pos;
-	//int				cost_a;
-	//int				cost_b;
+	int				cost_a;// cout pour bouger un nb de la pile a a la pile b
+	int				cost_b;// cout pour bouger un nb de la pile b a la pile a
 
 	struct s_stack	*next;
 }	t_stack;
@@ -45,9 +25,13 @@ int			ft_strcmp(char *str1, char *str2);
 void		ft_free(t_stack	*stack);
 int			ft_lstsize(t_stack *stack);
 
+// ------------------- swap_utils --------------------
+int	get_max(t_stack **stack);
+int	get_min(t_stack **stack);
+
 // ------------------- push_swap --------------------
-void		push_swap(t_stack *stack_a, t_stack *stack_b);
-int			is_sort(t_stack *stack);
+void		push_swap(t_stack **stack_a, t_stack **stack_b);
+int			is_sort(t_stack **stack);
 
 // ------------------- write_instru --------------------
 void		write_sa(t_stack **stack_a);
