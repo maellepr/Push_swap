@@ -6,7 +6,7 @@
 /*   By: mapoirie <mapoirie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 13:42:46 by mapoirie          #+#    #+#             */
-/*   Updated: 2023/06/16 17:37:29 by mapoirie         ###   ########.fr       */
+/*   Updated: 2023/06/19 11:02:23 by mapoirie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	write_ss(t_stack **stack_a, t_stack **stack_b)
 /*
 Ecrit pa puis fait pa
 */
-void	write_pa(t_stack **stack_a, t_stack **stack_b)
+void	write_pa(t_stack **stack_b, t_stack **stack_a)
 {
 	write(1, "pa\n", 3);
 	do_p(stack_b, stack_a);
@@ -49,7 +49,7 @@ void	write_pa(t_stack **stack_a, t_stack **stack_b)
 /*
 Ecrit pb puis fait pb
 */
-void	write_pb(t_stack **stack_b, t_stack **stack_a)
+void	write_pb(t_stack **stack_a, t_stack **stack_b)
 {
 	write(1, "pb\n", 3);
 	do_p(stack_a, stack_b);

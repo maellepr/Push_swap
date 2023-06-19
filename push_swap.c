@@ -6,7 +6,7 @@
 /*   By: mapoirie <mapoirie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 13:42:35 by mapoirie          #+#    #+#             */
-/*   Updated: 2023/06/16 17:35:11 by mapoirie         ###   ########.fr       */
+/*   Updated: 2023/06/19 11:31:35 by mapoirie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,23 @@ int	is_sort(t_stack **stack)
 	return (1);
 }
 
+void	push_allb(t_stack **stack_a, t_stack **stack_b, int max, int med)
+{
+	//Initialisation : on push tout dans b sauf max, en triant plus grand en bas plus petit en haut
+	
+	while (ft_lstsize(*stack_a) > 1)
+	{
+		if ((*stack_a)->value != max)
+		{
+			write_pb(stack_a, stack_b);
+			if (ft_lstsize(*stack_b) >= 2 && (*stack_b)->value > med)
+				write_rb(stack_b);
+		}
+		else
+			write_ra(stack_a);
+	}
+}
+
 void	sort_big(t_stack **stack_a, t_stack **stack_b)
 {
 	int		min_a;
@@ -43,22 +60,8 @@ void	sort_big(t_stack **stack_a, t_stack **stack_b)
 	max_a = get_max(stack_a); 
 	min_a = get_min(stack_a);
 	med_a = get_median(stack_a, min_a);
-	//printf("med_a = %d\n", med_a);
-// Au lieu d'envoyer tous les plus grand > mediane, tous les plus petis < mediane
-// Envoyer dans l'ordre tous sauf le max et faire un rotate b lorque la value est plus grande
-	while (ft_lstsize(*stack_a) > 6)
-	{
 
-		//print_pile(*stack_a);
-		if (((*stack_a)->value) > med_a && ((*stack_a)->value) != max_a)
-			write_pa(stack_a, stack_b);
-		//printf("sta_a->value = %d\n", sta_a->value);
-		//printf("\nEtat de ma pile a apres **:\n\n");		
-		else 
-			write_ra(stack_a);
-
-		//printf("sta_a->value apres = %d\n", sta_a->value);
-	}
+	push_allb(stack_a, stack_b, max_a, med_a);
 }
 
 void	push_swap(t_stack **stack_a, t_stack **stack_b)
