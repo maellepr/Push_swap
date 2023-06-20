@@ -31,7 +31,7 @@ int	get_max(t_stack **stack);
 int	get_min(t_stack **stack);
 int	*make_tab(t_stack **stack, int size);
 int	sort_tab_find_med(int *tab, int size);
-int	get_median(t_stack **stack, int min);
+int	get_median(t_stack **stack);
 
 // ------------------- push_swap --------------------
 void		push_swap(t_stack **stack_a, t_stack **stack_b);

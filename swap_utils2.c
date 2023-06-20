@@ -6,7 +6,7 @@
 /*   By: mapoirie <mapoirie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 13:43:04 by mapoirie          #+#    #+#             */
-/*   Updated: 2023/06/16 15:15:22 by mapoirie         ###   ########.fr       */
+/*   Updated: 2023/06/20 16:56:07 by mapoirie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ int	sort_tab_find_med(int *tab, int size)
 	return (med);
 }
 
-int	get_median(t_stack **stack, int min)
+int	get_median(t_stack **stack)
 {
 	int		med;
 	int		stack_size;

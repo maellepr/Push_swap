@@ -6,7 +6,7 @@
 /*   By: mapoirie <mapoirie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 13:42:35 by mapoirie          #+#    #+#             */
-/*   Updated: 2023/06/20 10:38:57 by mapoirie         ###   ########.fr       */
+/*   Updated: 2023/06/20 17:24:47 by mapoirie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,7 @@ int	get_pos(t_stack **stack, int value)
 			return (sta->pos);
 		sta = sta->next;
 	}
+	return(-1);
 }
 // Compte le cout de remonter ou de descendre un nb pour pouvoir le push
 int	cost_b(int middle, int pos_nb, t_stack **stack_b)
@@ -122,10 +123,10 @@ void	calcul_cost(t_stack **stack_a, t_stack **stack_b)
 {
 //	int		middle;
 //	int		med_b;
-	t_stack	*sta_a;
+//	t_stack	*sta_a;
 	t_stack	*sta_b;
 
-	sta_a = (*stack_a);
+//	sta_a = (*stack_a);
 	sta_b = (*stack_b);
 //	middle = ft_lstsize(stack_b) / 2;
 //	med_b = get_median(stack_b, min_b);// ici 6
@@ -136,29 +137,50 @@ void	calcul_cost(t_stack **stack_a, t_stack **stack_b)
 	}
 }
 
+int	find_maj(t_stack **stack_a, int valuetopush)
+{
+//	int 	max;
+	int		maj;
+	t_stack	*sta_a;
+
+	maj = get_max(stack_a);;//45
+	sta_a = (*stack_a);
+	while (sta_a)
+	{
+		if (sta_a->value < maj && sta_a->value > valuetopush)
+			maj = sta_a->value;
+		sta_a = sta_a->next;
+	}
+	printf("valuetopuh = %d et son majorant = %d\n", valuetopush, maj);
+	return (maj);
+}
+
 void	sort(t_stack **stack_a, t_stack **stack_b, int postopush, int valuetopush)
 {
-	//int		min_b;
-	//int		med_b;
-	t_stack	*sta_a;
-	t_stack	*sta_b;
+	int		maj;
+	int		maj_pos;
 
-	//min_b = get_min(stack_b);
-	//med_b = get_median(stack_b, min_b);
-	sta_a = (*stack_a);
-	sta_b = (*stack_b);
-	if (postopush < (ft_lstsize(stack_b) / 2))
-	{
-		while (sta_b->value != valuetopush)
+	// printf("value to push = %d\n", valuetopush);
+	// printf("pos to push = %d\n", postopush);
+	// printf("lstsize / 2 = %d\n", ft_lstsize(*stack_b) / 2);
+	//remonte la bonne valeur en haut de stack_b 
+	if (postopush < (ft_lstsize(*stack_b) / 2))
+		while ((*stack_b)->value != valuetopush)
 			write_rb(stack_b);
-	}
-	else if (postopush > (ft_lstsize(stack_b) / 2))
-	{
-		while (sta_b->value != valuetopush)
+	else if (postopush >= (ft_lstsize(*stack_b) / 2))
+		while ((*stack_b)->value != valuetopush)
 			write_rrb(stack_b);
-	}
-	
-	
+	//remonte le majorant en haut de stack_a
+	maj = find_maj(stack_a, valuetopush);
+	// printf("maj = %d\n", maj);
+	maj_pos = get_pos(stack_a, maj);
+	if (maj_pos < (ft_lstsize(*stack_a) / 2))
+		while ((*stack_a)->value != maj)
+			write_ra(stack_a);
+	else if (maj_pos >= (ft_lstsize(*stack_a) / 2))
+		while ((*stack_a)->value != maj)
+			write_rra(stack_a);
+	write_pa(stack_b, stack_a);
 }
 
 void	pos_to_sort(t_stack **stack_a, t_stack **stack_b)
@@ -168,12 +190,15 @@ void	pos_to_sort(t_stack **stack_a, t_stack **stack_b)
 	int		valuetopush;
 	t_stack *sta_b;
 
-	costtopush = 2;
-	sta_b = stack_b;
+	// costtopush = sta_b->cost;
+	costtopush = 100;
+	sta_b = *stack_b;
+// cherche la position du nb a pusher dans stack_a
 	while(sta_b)
 	{
 		if (sta_b->cost < costtopush)
 		{
+			costtopush = sta_b->cost;
 			postopush = sta_b->pos;
 			valuetopush = sta_b->value;
 		}
@@ -182,23 +207,42 @@ void	pos_to_sort(t_stack **stack_a, t_stack **stack_b)
 	sort(stack_a, stack_b, postopush, valuetopush);
 }
 
+void	sort_a(t_stack **stack_a)
+{
+	int	min;
+	int	pos_min;
+
+	min = get_min(stack_a);
+	pos_min = get_pos(stack_a, min);
+	if (pos_min < ft_lstsize(*stack_a) / 2)
+		while ((*stack_a)->value != min)
+			write_ra(stack_a);
+	if (pos_min >= ft_lstsize(*stack_a) / 2)
+		while ((*stack_a)->value != min)
+			write_rra(stack_a);
+}
+
 void	sort_big(t_stack **stack_a, t_stack **stack_b)
 {
-	int	min_a;
+//	int	min_a;
 	int	max_a;
 	int	med_a;
-
+	
 	max_a = get_max(stack_a);
-	min_a = get_min(stack_a);
-	med_a = get_median(stack_a, min_a);
+	med_a = get_median(stack_a);
 
 	push_allb(stack_a, stack_b, max_a, med_a);
-	while (ft_lstsize(stack_b) > 0)
+	printf("\nEtat de ma pile a apres push_allb :\n");
+	print_pile(*stack_a);
+	printf("\nEtat de ma pile b apres push_allb :\n");
+	print_pile(*stack_b);
+	while (ft_lstsize(*stack_b) > 0)// a changer avec 0
 	{
 		assign_pos(stack_a, stack_b);
 		calcul_cost(stack_a, stack_b);
 		pos_to_sort(stack_a, stack_b);
-	}
+	}	
+	sort_a(stack_a);
 }
 
 void	push_swap(t_stack **stack_a, t_stack **stack_b)
