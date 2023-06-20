@@ -6,7 +6,7 @@
 /*   By: mapoirie <mapoirie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 13:42:54 by mapoirie          #+#    #+#             */
-/*   Updated: 2023/06/16 13:42:55 by mapoirie         ###   ########.fr       */
+/*   Updated: 2023/06/20 17:35:17 by mapoirie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ int	check_int(char **av)
 	while(av[i])
 	{
 		nb = ft_atoi(av[i]);
-		//printf("nb apres atoi : %ld\n", nb);
 		if (nb > 2147483647 || nb < -2147483648)
 			return (0);
 		i++;

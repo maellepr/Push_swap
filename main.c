@@ -6,7 +6,7 @@
 /*   By: mapoirie <mapoirie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 13:42:27 by mapoirie          #+#    #+#             */
-/*   Updated: 2023/06/20 16:19:50 by mapoirie         ###   ########.fr       */
+/*   Updated: 2023/06/20 17:51:24 by mapoirie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,21 +15,21 @@
 /*
 Fonction temporaire pour afficher le contenu d'une pile
 */
-void print_pile(t_stack *stack)
-{
-	t_stack	*stack1 = stack;
+// void print_pile(t_stack *stack)
+// {
+// 	t_stack	*stack1 = stack;
  
-    if (stack1 == NULL)
-    {
-        printf("Stack Underflow\n");
-        return;
-    }
-    while (stack1 != NULL)
-    {
-        printf("%d	pos : %d	cost : %d\n", stack1->value, stack1->pos, stack1->cost);
-        stack1 = stack1->next;
-    }
-}
+//     if (stack1 == NULL)
+//     {
+//         printf("Stack Underflow\n");
+//         return;
+//     }
+//     while (stack1 != NULL)
+//     {
+//         printf("%d	pos : %d	cost : %d\n", stack1->value, stack1->pos, stack1->cost);
+//         stack1 = stack1->next;
+//     }
+// }
 
 int	main(int ac, char **av)
 {
@@ -49,20 +49,13 @@ int	main(int ac, char **av)
 			return (0);
 		}
 	}
-	//write (1, "No error\n", 9);
 	stack_a = fill_stack_value(ac, av);
 	stack_b = NULL;
-
 	push_swap(&stack_a, &stack_b);
-	//int i = 0;
-	// while (stack_a)
-	// {
-	// 	write_pa(&stack_a, &stack_b);
-	// }
-	printf("\nEtat de ma pile a apres :\n\n");
-	print_pile(stack_a);
-	printf("\nEtat de ma pile b apres :\n\n");
-	print_pile(stack_b);
+	// printf("\nEtat de ma pile a apres :\n\n");
+	// print_pile(stack_a);
+	// printf("\nEtat de ma pile b apres :\n\n");
+	// print_pile(stack_b);
 	ft_free(stack_a);
 	ft_free(stack_b);
 	return (0);

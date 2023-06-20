@@ -6,7 +6,7 @@
 /*   By: mapoirie <mapoirie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 13:42:35 by mapoirie          #+#    #+#             */
-/*   Updated: 2023/06/20 17:24:47 by mapoirie         ###   ########.fr       */
+/*   Updated: 2023/06/20 17:48:54 by mapoirie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	push_allb(t_stack **stack_a, t_stack **stack_b, int max, int med)
 		else
 			write_ra(stack_a);
 	}
-	printf("stack_b->value : %d\n", (*stack_b)->value);
+	//printf("stack_b->value : %d\n", (*stack_b)->value);
 }
 
 void	assign_pos(t_stack **stack_a, t_stack **stack_b)
@@ -151,7 +151,7 @@ int	find_maj(t_stack **stack_a, int valuetopush)
 			maj = sta_a->value;
 		sta_a = sta_a->next;
 	}
-	printf("valuetopuh = %d et son majorant = %d\n", valuetopush, maj);
+	//printf("valuetopuh = %d et son majorant = %d\n", valuetopush, maj);
 	return (maj);
 }
 
@@ -232,10 +232,10 @@ void	sort_big(t_stack **stack_a, t_stack **stack_b)
 	med_a = get_median(stack_a);
 
 	push_allb(stack_a, stack_b, max_a, med_a);
-	printf("\nEtat de ma pile a apres push_allb :\n");
-	print_pile(*stack_a);
-	printf("\nEtat de ma pile b apres push_allb :\n");
-	print_pile(*stack_b);
+	// printf("\nEtat de ma pile a apres push_allb :\n");
+	// print_pile(*stack_a);
+	// printf("\nEtat de ma pile b apres push_allb :\n");
+	// print_pile(*stack_b);
 	while (ft_lstsize(*stack_b) > 0)// a changer avec 0
 	{
 		assign_pos(stack_a, stack_b);

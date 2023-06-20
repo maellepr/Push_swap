@@ -6,7 +6,7 @@
 /*   By: mapoirie <mapoirie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 13:42:50 by mapoirie          #+#    #+#             */
-/*   Updated: 2023/06/20 16:00:19 by mapoirie         ###   ########.fr       */
+/*   Updated: 2023/06/20 17:36:24 by mapoirie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,11 @@ void	stack_add_bottom(t_stack *stack, t_stack *new)
 {
 	if(!new)
 		return;
-	// if(!*stack)
-	// {
-	// 	*stack = new;
-	// 	return;
-	// }
+	if(!stack)
+	{
+		stack = new;
+		return;
+	}
 	while (stack && stack->next != NULL)
 		stack = stack->next;
 	stack->next = new;
@@ -59,9 +59,9 @@ t_stack	*fill_stack_value(int ac, char **av)
 	{
 		nb = ft_atoi(av[i]);
 		if (i == 1)
-			stack_a = stack_new(nb);// argv[1] = 45 donc nb = 45
+			stack_a = stack_new(nb);
 		else
-			stack_add_bottom(stack_a, stack_new(nb));// stack a (45 -> NULL), argv[2] = 8
+			stack_add_bottom(stack_a, stack_new(nb));
 		i++;
 	}
 	return (stack_a);

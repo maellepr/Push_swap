@@ -6,7 +6,7 @@
 /*   By: mapoirie <mapoirie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 13:42:40 by mapoirie          #+#    #+#             */
-/*   Updated: 2023/06/16 15:24:15 by mapoirie         ###   ########.fr       */
+/*   Updated: 2023/06/20 17:36:48 by mapoirie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,8 +118,8 @@ void	do_rr(t_stack **stack)
 		return ;
 	i = -1;
 	nb_elem = ft_lstsize(*stack);
-	last = stack_bottom(*stack); //		2 -> NULL
-	temp_stack = (*stack);//			18 -> 9 -> 5 -> 2 -> NULL
+	last = stack_bottom(*stack);
+	temp_stack = (*stack);
 	(*stack) = last;
 	(*stack)->next = temp_stack;
 	temp2_stack = (*stack);
