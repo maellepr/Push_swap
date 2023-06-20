@@ -6,7 +6,7 @@
 /*   By: mapoirie <mapoirie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 13:42:27 by mapoirie          #+#    #+#             */
-/*   Updated: 2023/06/16 16:56:42 by mapoirie         ###   ########.fr       */
+/*   Updated: 2023/06/20 09:18:17 by mapoirie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void print_pile(t_stack *stack)
     }
     while (stack1 != NULL)
     {
-        printf("%d \n", stack1->value);
+        printf("%d	pos : %d	cost : %d\n", stack1->value, stack1->pos, stack1->cost);
         stack1 = stack1->next;
     }
 }
@@ -52,6 +52,10 @@ int	main(int ac, char **av)
 	//write (1, "No error\n", 9);
 	stack_a = fill_stack_value(ac, av);
 	stack_b = NULL;
+	write_pb(&stack_a, &stack_b);
+	write_pb(&stack_a, &stack_b);
+	write_pb(&stack_a, &stack_b);
+	write_pb(&stack_a, &stack_b);
 	push_swap(&stack_a, &stack_b);
 	//int i = 0;
 	// while (stack_a)

@@ -6,7 +6,7 @@
 /*   By: mapoirie <mapoirie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 13:42:35 by mapoirie          #+#    #+#             */
-/*   Updated: 2023/06/19 11:31:35 by mapoirie         ###   ########.fr       */
+/*   Updated: 2023/06/20 10:38:57 by mapoirie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,23 +45,160 @@ void	push_allb(t_stack **stack_a, t_stack **stack_b, int max, int med)
 		else
 			write_ra(stack_a);
 	}
+	printf("stack_b->value : %d\n", (*stack_b)->value);
 }
 
-void	sort_big(t_stack **stack_a, t_stack **stack_b)
+void	assign_pos(t_stack **stack_a, t_stack **stack_b)
 {
-	int		min_a;
-	int		max_a;
-	int		med_a;
+	int		pos;
+	t_stack	*sta_a;
+	t_stack	*sta_b;
+
+	pos = 0;
+	sta_a = *stack_a;
+	sta_b = *stack_b;
+	while (sta_a)
+	{
+		sta_a->pos = pos;
+		sta_a = sta_a->next;
+		pos++; 
+	}
+	pos = 0;
+	while (sta_b)
+	{
+		sta_b->pos = pos;
+		sta_b = sta_b->next;
+		pos++;
+	}
+}
+
+int	get_pos(t_stack **stack, int value)
+{
+	t_stack	*sta;
+
+	sta = (*stack);
+	while (sta)
+	{
+		if (sta->value == value)
+			return (sta->pos);
+		sta = sta->next;
+	}
+}
+// Compte le cout de remonter ou de descendre un nb pour pouvoir le push
+int	cost_b(int middle, int pos_nb, t_stack **stack_b)
+{
+	int cost;
+	
+	if (pos_nb < middle)
+		cost = pos_nb;
+	else if (pos_nb >= middle)
+		cost = ft_lstsize(*stack_b) - pos_nb;
+	return (cost);		
+}
+
+// Compte le cout de remonter un nb de la stack_a en fonction du nb en question de la stack_b
+// en cherchant le plus petit majorant du nb
+int	cost_a(int nb_sta_b, t_stack **stack_a)
+{
+	int		cost;
+	int		maj;
+	t_stack	*sta_a;
+
+	sta_a = (*stack_a);
+	maj = get_max(stack_a);
+	while(sta_a)
+	{
+		if (sta_a->value > nb_sta_b && sta_a->value <= maj)
+			maj = sta_a->value;
+		sta_a = sta_a->next;
+	}
+	cost = cost_b(ft_lstsize(*stack_a) / 2 , get_pos(stack_a, maj), stack_a);
+	return (cost);
+}
+
+
+
+void	calcul_cost(t_stack **stack_a, t_stack **stack_b)
+{
+//	int		middle;
+//	int		med_b;
 	t_stack	*sta_a;
 	t_stack	*sta_b;
 
 	sta_a = (*stack_a);
 	sta_b = (*stack_b);
-	max_a = get_max(stack_a); 
+//	middle = ft_lstsize(stack_b) / 2;
+//	med_b = get_median(stack_b, min_b);// ici 6
+	while (sta_b)
+	{
+		sta_b->cost = cost_b((ft_lstsize(*stack_b)) / 2, sta_b->pos, stack_b) + cost_a(sta_b->value, stack_a);
+		sta_b = sta_b->next;
+	}
+}
+
+void	sort(t_stack **stack_a, t_stack **stack_b, int postopush, int valuetopush)
+{
+	//int		min_b;
+	//int		med_b;
+	t_stack	*sta_a;
+	t_stack	*sta_b;
+
+	//min_b = get_min(stack_b);
+	//med_b = get_median(stack_b, min_b);
+	sta_a = (*stack_a);
+	sta_b = (*stack_b);
+	if (postopush < (ft_lstsize(stack_b) / 2))
+	{
+		while (sta_b->value != valuetopush)
+			write_rb(stack_b);
+	}
+	else if (postopush > (ft_lstsize(stack_b) / 2))
+	{
+		while (sta_b->value != valuetopush)
+			write_rrb(stack_b);
+	}
+	
+	
+}
+
+void	pos_to_sort(t_stack **stack_a, t_stack **stack_b)
+{
+	int		costtopush;
+	int		postopush;
+	int		valuetopush;
+	t_stack *sta_b;
+
+	costtopush = 2;
+	sta_b = stack_b;
+	while(sta_b)
+	{
+		if (sta_b->cost < costtopush)
+		{
+			postopush = sta_b->pos;
+			valuetopush = sta_b->value;
+		}
+		sta_b = sta_b->next;
+	}
+	sort(stack_a, stack_b, postopush, valuetopush);
+}
+
+void	sort_big(t_stack **stack_a, t_stack **stack_b)
+{
+	int	min_a;
+	int	max_a;
+	int	med_a;
+
+	max_a = get_max(stack_a);
 	min_a = get_min(stack_a);
 	med_a = get_median(stack_a, min_a);
 
 	push_allb(stack_a, stack_b, max_a, med_a);
+	while (ft_lstsize(stack_b) > 0)
+	{
+		assign_pos(stack_a, stack_b);
+		calcul_cost(stack_a, stack_b);
+		pos_to_sort(stack_a, stack_b);
+	}
 }
 
 void	push_swap(t_stack **stack_a, t_stack **stack_b)
@@ -84,6 +221,5 @@ void	push_swap(t_stack **stack_a, t_stack **stack_b)
 	else if (size_sa > 10 && !(is_sort(stack_a)))
 	{
 		sort_big(stack_a, stack_b);
-		//sort_big(stack_a, stack_b);
 	}
 }

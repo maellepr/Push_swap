@@ -9,10 +9,10 @@ typedef struct s_stack
 {
 	int				value;// nombre 
 //	int				index;
-	int				pos_a;// position du nombre dans la pile a
-	int				pos_b;// position du nombre dans la pile b
-	int				cost_a;// cout pour bouger un nb de la pile a a la pile b
-	int				cost_b;// cout pour bouger un nb de la pile b a la pile a
+	int				pos;// position du nombre dans la pile a
+//	int				pos_b;// position du nombre dans la pile b
+	int				cost;// cout pour bouger un nb de la pile a a la pile b
+//	int				cost_b;// cout pour bouger un nb de la pile b a la pile a
 //	int				min;
 //	int				max;
 //	int				median;
