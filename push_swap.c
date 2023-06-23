@@ -6,7 +6,7 @@
 /*   By: mapoirie <mapoirie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 13:42:35 by mapoirie          #+#    #+#             */
-/*   Updated: 2023/06/20 17:48:54 by mapoirie         ###   ########.fr       */
+/*   Updated: 2023/06/23 10:20:40 by mapoirie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	is_sort(t_stack **stack)
 	return (1);
 }
 
-void	push_allb(t_stack **stack_a, t_stack **stack_b, int max, int med)
+void	push_allb(t_stack **stack_a, t_stack **stack_b, int max, float med)
 {
 	//Initialisation : on push tout dans b sauf max, en triant plus grand en bas plus petit en haut
 	
@@ -48,27 +48,18 @@ void	push_allb(t_stack **stack_a, t_stack **stack_b, int max, int med)
 	//printf("stack_b->value : %d\n", (*stack_b)->value);
 }
 
-void	assign_pos(t_stack **stack_a, t_stack **stack_b)
+void	assign_pos(t_stack **stack)
 {
 	int		pos;
-	t_stack	*sta_a;
-	t_stack	*sta_b;
+	t_stack	*sta;
 
 	pos = 0;
-	sta_a = *stack_a;
-	sta_b = *stack_b;
-	while (sta_a)
+	sta = *stack;
+	while (sta)
 	{
-		sta_a->pos = pos;
-		sta_a = sta_a->next;
+		sta->pos = pos;
+		sta = sta->next;
 		pos++; 
-	}
-	pos = 0;
-	while (sta_b)
-	{
-		sta_b->pos = pos;
-		sta_b = sta_b->next;
-		pos++;
 	}
 }
 
@@ -191,9 +182,9 @@ void	pos_to_sort(t_stack **stack_a, t_stack **stack_b)
 	t_stack *sta_b;
 
 	// costtopush = sta_b->cost;
-	costtopush = 100;
+	costtopush = __INT_MAX__;
 	sta_b = *stack_b;
-// cherche la position du nb a pusher dans stack_a
+	// cherche la position du nb a pusher dans stack_a
 	while(sta_b)
 	{
 		if (sta_b->cost < costtopush)
@@ -226,7 +217,7 @@ void	sort_big(t_stack **stack_a, t_stack **stack_b)
 {
 //	int	min_a;
 	int	max_a;
-	int	med_a;
+	float	med_a;
 	
 	max_a = get_max(stack_a);
 	med_a = get_median(stack_a);
@@ -238,7 +229,8 @@ void	sort_big(t_stack **stack_a, t_stack **stack_b)
 	// print_pile(*stack_b);
 	while (ft_lstsize(*stack_b) > 0)// a changer avec 0
 	{
-		assign_pos(stack_a, stack_b);
+		assign_pos(stack_a);
+		assign_pos(stack_b);
 		calcul_cost(stack_a, stack_b);
 		pos_to_sort(stack_a, stack_b);
 	}	
@@ -255,15 +247,9 @@ void	push_swap(t_stack **stack_a, t_stack **stack_b)
 	if (size_sa == 2 && !(is_sort(stack_a)))// dans le cas u il y a deux nb
 		write_sa(stack_a);
 	else if (size_sa == 3 )
-	{
-
-	}
-	else if (size_sa <= 10 && !(is_sort(stack_a)))
-	{
-		
-	}
-	else if (size_sa > 10 && !(is_sort(stack_a)))
-	{
+		sort_3(stack_a);
+	else if (size_sa < 10 && !(is_sort(stack_a)))
+		sort_small(stack_a, stack_b);
+	else if (size_sa >= 10 && !(is_sort(stack_a)))
 		sort_big(stack_a, stack_b);
-	}
 }

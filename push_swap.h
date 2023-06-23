@@ -21,17 +21,26 @@ void		ft_free(t_stack	*stack);
 int			ft_lstsize(t_stack *stack);
 
 // ------------------- swap_utils2 --------------------
-int	get_max(t_stack **stack);
-int	get_min(t_stack **stack);
-int	*make_tab(t_stack **stack, int size);
-int	sort_tab_find_med(int *tab, int size);
-int	get_median(t_stack **stack);
+int			get_max(t_stack **stack);
+int			get_min(t_stack **stack);
+int			*make_tab(t_stack **stack, int size);
+int			sort_tab_find_med(int *tab, int size);
+int			get_median(t_stack **stack);
+
+//-------------------- sort_small ---------------------
+void		sort_small(t_stack **stack_a, t_stack **stack_b);
+
+//---------------------- sort_3 -----------------------
+void		sort_3(t_stack **stack_a);
 
 // ------------------- push_swap --------------------
+void		assign_pos(t_stack **stack);
+int			get_pos(t_stack **stack, int value);
 void		push_swap(t_stack **stack_a, t_stack **stack_b);
 int			is_sort(t_stack **stack);
 
 // ------------------- write_instru --------------------
+void		error_and_quite(void);
 void		write_sa(t_stack **stack_a);
 void		write_sb(t_stack **stack_b);
 void		write_ss(t_stack **stack_a, t_stack **stack_b);
@@ -61,5 +70,6 @@ t_stack		*stack_new(int nb);
 void		stack_add_bottom(t_stack *stack, t_stack *new);
 
 //--------------------- main --------------------------
-void print_pile(t_stack *stack);
+void 		print_pile(t_stack *stack);
+
 # endif

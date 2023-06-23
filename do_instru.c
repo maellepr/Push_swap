@@ -6,14 +6,14 @@
 /*   By: mapoirie <mapoirie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 13:42:40 by mapoirie          #+#    #+#             */
-/*   Updated: 2023/06/20 17:36:48 by mapoirie         ###   ########.fr       */
+/*   Updated: 2023/06/22 13:19:42 by mapoirie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
 /*
-Intervertit les deux premiers elements au sommet de la pile a ou b
+Interverti les deux premiers elements au sommet de la pile a ou b
 */
 void	do_s(t_stack **stack)
 {

@@ -6,12 +6,20 @@
 /*   By: mapoirie <mapoirie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 13:42:46 by mapoirie          #+#    #+#             */
-/*   Updated: 2023/06/19 11:02:23 by mapoirie         ###   ########.fr       */
+/*   Updated: 2023/06/21 16:23:16 by mapoirie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
+/*
+Ecrit error et exit quand il y a une erreur
+*/
+void	error_and_quite(void)
+{
+	write (2, "Error\n", 6);
+	exit(EXIT_FAILURE); // a voir 
+}
 // /*
 // Ecrit sa puis fait s
 // */
