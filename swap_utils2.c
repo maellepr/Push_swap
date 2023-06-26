@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mapoirie <mapoirie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/16 13:43:04 by mapoirie          #+#    #+#             */
-/*   Updated: 2023/06/23 10:15:07 by mapoirie         ###   ########.fr       */
+/*   Created: 2023/06/26 10:59:50 by mapoirie          #+#    #+#             */
+/*   Updated: 2023/06/26 12:18:56 by mapoirie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	get_max(t_stack **stack)
 
 	temp_s = (*stack);
 	max = temp_s->value;
-	while(temp_s->next != NULL)
+	while (temp_s->next != NULL)
 	{
 		if (max < temp_s->next->value)
 			max = temp_s->next->value;
@@ -35,7 +35,7 @@ int	get_min(t_stack **stack)
 
 	temp_s = (*stack);
 	min = temp_s->value;
-	while(temp_s->next != NULL)
+	while (temp_s->next != NULL)
 	{
 		if (min > temp_s->next->value)
 			min = temp_s->next->value;
@@ -62,15 +62,26 @@ int	*make_tab(t_stack **stack, int size)
 		i++;
 	}
 	i = 0;
-	return(tab);
+	return (tab);
+}
+
+int	calcul_med(int *tab, int size)
+{
+	int	med;
+
+	if (size % 2 != 0)
+		med = tab[size / 2];
+	else
+		med = (tab[size / 2] + tab[size / 2 - 1]) / 2;
+	return (med);
 }
 
 int	sort_tab_find_med(int *tab, int size)
 {
-	int swap;
+	int	swap;
 	int	i;
 	int	j;
-	float med;
+	int	med;
 
 	i = 1;
 	swap = 0;
@@ -81,36 +92,12 @@ int	sort_tab_find_med(int *tab, int size)
 		while (j < size)
 		{
 			if (tab[j] < tab[i])
-			{
-				swap = tab[j];
-				tab[j] = tab[i];
-				tab[i] = swap;
-			}
+				ft_swap(&tab[j], &tab[i]);
 			j++;
 		}
 		i++;
 	}
-	if (size % 2 != 0)
-		med = tab[size / 2];
-	else
-		med = (tab[size / 2] + tab[size / 2 - 1]) / 2; 
-	//med = tab[size / 2];
+	med = calcul_med(tab, size);
 	free(tab);
-	//printf("med = %f\n", med);
-	return (med);
-}
-
-int	get_median(t_stack **stack)
-{
-	float	med;
-	int		stack_size;
-	int		*tab;
-	t_stack *sta;
-
-
-	sta = *stack;
-	stack_size = ft_lstsize(sta);
-	tab = make_tab(stack, stack_size);	
-	med = sort_tab_find_med(tab, stack_size);
 	return (med);
 }

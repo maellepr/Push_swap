@@ -5,24 +5,21 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mapoirie <mapoirie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/16 13:42:59 by mapoirie          #+#    #+#             */
-/*   Updated: 2023/06/16 13:43:00 by mapoirie         ###   ########.fr       */
+/*   Created: 2023/06/26 10:59:46 by mapoirie          #+#    #+#             */
+/*   Updated: 2023/06/26 12:20:19 by mapoirie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-/*
-Compte longueur de la liste
-*/
-int		ft_lstsize(t_stack *stack)
+int	ft_lstsize(t_stack *stack)
 {
 	int	i;
 
 	i = 0;
 	if (!stack)
 		return (0);
-	while(stack)
+	while (stack)
 	{
 		stack = stack->next;
 		i++;
@@ -30,20 +27,16 @@ int		ft_lstsize(t_stack *stack)
 	return (i);
 }
 
-/*
-Free tous les elements de la pile
-*/
 void	ft_free(t_stack	*stack)
 {
 	t_stack	*temp;
 
-	while(stack)
+	while (stack)
 	{
 		temp = stack->next;
 		free(stack);
 		stack = temp;
 	}
-
 }
 
 int	ft_strcmp(char *str1, char *str2)
@@ -60,7 +53,7 @@ int	ft_strcmp(char *str1, char *str2)
 	return (0);
 }
 
-static int	ft_checksign(const char *str)
+int	ft_checksign(const char *str)
 {
 	int	i;
 	int	c;
@@ -86,7 +79,7 @@ static int	ft_checksign(const char *str)
 
 int long	ft_atoi(const char *str)
 {
-	int	i;
+	int			i;
 	int long	nb;
 
 	i = 0;

@@ -5,42 +5,34 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mapoirie <mapoirie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/16 13:42:50 by mapoirie          #+#    #+#             */
-/*   Updated: 2023/06/22 17:38:08 by mapoirie         ###   ########.fr       */
+/*   Created: 2023/06/26 10:59:40 by mapoirie          #+#    #+#             */
+/*   Updated: 2023/06/26 12:12:58 by mapoirie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-/*
-Ajoute le nouveau maillon en bas de la liste chainee
-*/
 void	stack_add_bottom(t_stack *stack, t_stack *new)
 {
-	if(!new)
-		return;
-	if(!stack)
+	if (!new)
+		return ;
+	if (!stack)
 	{
 		stack = new;
-		return;
+		return ;
 	}
 	while (stack && stack->next != NULL)
 		stack = stack->next;
 	stack->next = new;
-
 }
 
-/*
-Creer nouveau maillon en donnant a value la valeur de nb 
-et pointeur next pointe vers NULL 
-*/
 t_stack	*stack_new(int nb)
 {
 	t_stack	*new;
 
 	new = malloc(sizeof(t_stack));
 	if (!new)
-		return(NULL);
+		return (NULL);
 	new->value = nb;
 	new->next = NULL;
 	return (new);
