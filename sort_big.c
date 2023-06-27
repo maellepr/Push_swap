@@ -6,7 +6,7 @@
 /*   By: mapoirie <mapoirie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 11:01:33 by mapoirie          #+#    #+#             */
-/*   Updated: 2023/06/26 12:17:16 by mapoirie         ###   ########.fr       */
+/*   Updated: 2023/06/27 09:06:37 by mapoirie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,21 @@
 
 void	sort(t_stack **stack_a, t_stack **stack_b, int pos, int value)
 {
-	int		maj;
-	int		maj_pos;
+	int	maj;
+	int	maj_pos;
 
-	if (pos < (ft_lstsize(*stack_b) / 2))
+	if (pos <= (ft_lstsize(*stack_b) / 2))
 		while ((*stack_b)->value != value)
 			write_rb(stack_b);
-	else if (pos >= (ft_lstsize(*stack_b) / 2))
+	else if (pos > (ft_lstsize(*stack_b) / 2))
 		while ((*stack_b)->value != value)
 			write_rrb(stack_b);
 	maj = find_maj(stack_a, value);
 	maj_pos = get_pos(stack_a, maj);
-	if (maj_pos < (ft_lstsize(*stack_a) / 2))
+	if (maj_pos <= (ft_lstsize(*stack_a) / 2))
 		while ((*stack_a)->value != maj)
 			write_ra(stack_a);
-	else if (maj_pos >= (ft_lstsize(*stack_a) / 2))
+	else if (maj_pos > (ft_lstsize(*stack_a) / 2))
 		while ((*stack_a)->value != maj)
 			write_rra(stack_a);
 	write_pa(stack_b, stack_a);
@@ -66,7 +66,7 @@ void	sort_a(t_stack **stack_a)
 	if (pos_min < ft_lstsize(*stack_a) / 2)
 		while ((*stack_a)->value != min)
 			write_ra(stack_a);
-	if (pos_min >= ft_lstsize(*stack_a) / 2)
+	else if (pos_min >= ft_lstsize(*stack_a) / 2)
 		while ((*stack_a)->value != min)
 			write_rra(stack_a);
 }

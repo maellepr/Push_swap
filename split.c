@@ -6,7 +6,7 @@
 /*   By: mapoirie <mapoirie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 15:16:20 by mapoirie          #+#    #+#             */
-/*   Updated: 2023/06/26 10:56:14 by mapoirie         ###   ########.fr       */
+/*   Updated: 2023/06/26 15:47:13 by mapoirie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ char	*ft_copyword(char *av, int i_begin, int i_end)
 	i = 0;
 	word = malloc((i_end - i_begin +1) * sizeof(char));
 	if (!word)
-		error_and_quite();
+		return (NULL);
 	while (i_begin < i_end)
 	{
 		word[i] = av[i_begin];
@@ -100,7 +100,7 @@ char	**ft_split(char *av)
 		exit (0);
 	new_str = malloc((ft_countwords(av) + 2) * sizeof(char *));
 	if (!new_str)
-		error_and_quite();
+		return (0);
 	new_str = ft_split2(av, new_str);
 	new_str[0][0] = 'x';
 	new_str[0][1] = '\0';

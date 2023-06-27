@@ -6,7 +6,7 @@
 #    By: mapoirie <mapoirie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/26 10:11:07 by mapoirie          #+#    #+#              #
-#    Updated: 2023/06/26 12:21:59 by mapoirie         ###   ########.fr        #
+#    Updated: 2023/06/26 13:45:33 by mapoirie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,6 +43,9 @@ all : $(NAME)
 
 clean:
 	$(RM) $(OBJ)
+
+fclean: clean
+	$(RM) $(NAME)
 
 re: fclean all
 

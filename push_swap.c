@@ -6,7 +6,7 @@
 /*   By: mapoirie <mapoirie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 13:42:35 by mapoirie          #+#    #+#             */
-/*   Updated: 2023/06/26 12:15:15 by mapoirie         ###   ########.fr       */
+/*   Updated: 2023/06/27 08:51:19 by mapoirie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ int	main(int ac, char **av)
 	t_stack	*stack_b;
 
 	if (ac < 2)
-		error_and_quite();
+		return (0);
 	else if (ac == 2)
 	{
 		if (!ft_check_error(av))

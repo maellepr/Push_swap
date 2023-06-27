@@ -6,7 +6,7 @@
 /*   By: mapoirie <mapoirie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 10:59:46 by mapoirie          #+#    #+#             */
-/*   Updated: 2023/06/26 12:20:19 by mapoirie         ###   ########.fr       */
+/*   Updated: 2023/06/27 09:17:56 by mapoirie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,5 +98,8 @@ int long	ft_atoi(const char *str)
 	}
 	if (ft_checksign(str) == '-')
 		return (nb * (-1));
+	if ((nb < INT_MIN && ft_strlen(str) >= 11) \
+	|| (nb > INT_MAX && ft_strlen(str) >= 10))
+		error_and_quite();
 	return (nb);
 }

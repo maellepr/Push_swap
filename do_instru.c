@@ -6,7 +6,7 @@
 /*   By: mapoirie <mapoirie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 11:00:51 by mapoirie          #+#    #+#             */
-/*   Updated: 2023/06/26 12:12:29 by mapoirie         ###   ########.fr       */
+/*   Updated: 2023/06/26 15:46:08 by mapoirie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ void	push(int value_to_push, t_stack **dest)
 	else
 	{
 		temp_dest = malloc(sizeof(t_stack));
+		if (!temp_dest)
+			return ;
 		temp_dest->next = (*dest);
 		temp_dest->value = value_to_push;
 		(*dest) = temp_dest;

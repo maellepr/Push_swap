@@ -6,7 +6,7 @@
 /*   By: mapoirie <mapoirie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 11:06:25 by mapoirie          #+#    #+#             */
-/*   Updated: 2023/06/26 12:17:35 by mapoirie         ###   ########.fr       */
+/*   Updated: 2023/06/26 13:56:50 by mapoirie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	sort_small(t_stack **stack_a, t_stack **stack_b)
 			min = get_min(stack_a);
 			assign_pos(stack_a);
 			min_pos = get_pos(stack_a, min);
-			if (min_pos < ft_lstsize(*stack_a) / 2)
+			if (min_pos <= ft_lstsize(*stack_a) / 2)
 				while ((*stack_a)->value != min)
 					write_ra(stack_a);
 			if (min_pos > ft_lstsize(*stack_a) / 2)
