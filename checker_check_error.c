@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_error.c                                      :+:      :+:    :+:   */
+/*   checker_check_error.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mapoirie <mapoirie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/16 13:42:54 by mapoirie          #+#    #+#             */
-/*   Updated: 2023/06/29 17:16:28 by mapoirie         ###   ########.fr       */
+/*   Created: 2023/06/29 09:50:44 by mapoirie          #+#    #+#             */
+/*   Updated: 2023/06/29 17:15:48 by mapoirie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "checker.h"
 
 int	check_double(char **av)
 {
@@ -68,6 +68,30 @@ int	check_nb(char **av)
 			av[i][j] != '-' && av[i][j] != ' ')
 				return (0);
 			j++;
+		}
+		i++;
+	}
+	return (1);
+}
+
+int	check_single(char **av)
+{
+	int	i;
+	int	j;
+	int	count_neg;
+
+	i = 1;
+	while (av[i])
+	{
+		j = 0;
+		count_neg = 0;
+		while (av[i][j])
+		{
+			if (av[i][j] == '-')
+				count_neg++;
+			j++;
+			if (count_neg > 1)
+				return (0);
 		}
 		i++;
 	}

@@ -6,12 +6,13 @@
 #    By: mapoirie <mapoirie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/26 10:11:07 by mapoirie          #+#    #+#              #
-#    Updated: 2023/06/26 13:45:33 by mapoirie         ###   ########.fr        #
+#    Updated: 2023/06/29 10:13:18 by mapoirie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = push_swap
-CC = gcc
+NAME_BONUS = checker
+CC = cc
 CFLAGS = -g3 -Wall -Wextra -Werror
 RM = rm -fr
 SRC = check_error.c\
@@ -31,18 +32,37 @@ write_instru.c\
 write_instru2.c\
 write_instru3.c
 
+SRC_BONUS = checker.c\
+checker_error.c\
+checker_check_error.c\
+checker_utils.c\
+checker_utils2.c\
+get_next_line.c\
+split.c\
+fill_stack.c\
+do_instru.c\
+do_instru2.c\
+checker_start.c
+
 OBJ = $(SRC: .c=.o)
+
+OBJ_BONUS = $(SRC_BONUS: .c=.o)
 
 $(NAME): $(OBJ)
 	cc -o $(NAME) $(OBJ)
 
+$(NAME_BONUS): $(OBJ)
+	cc -o $(NAME_BONUS) $(OBJ_BONUS)
+
 all : $(NAME)
+
+bonus : $(NAME_BONUS)
 
 %.o : %.c
 	$(CC) -I $(CFLAGS) -o $@ -c $< 
 
 clean:
-	$(RM) $(OBJ)
+	$(RM) $(OBJ) $(OBJ_BONUS)
 
 fclean: clean
 	$(RM) $(NAME)

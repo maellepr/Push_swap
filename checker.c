@@ -1,31 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   checker.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mapoirie <mapoirie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/16 13:42:35 by mapoirie          #+#    #+#             */
-/*   Updated: 2023/06/29 16:47:03 by mapoirie         ###   ########.fr       */
+/*   Created: 2023/06/29 09:48:07 by mapoirie          #+#    #+#             */
+/*   Updated: 2023/06/29 11:47:46 by mapoirie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
-
-void	push_swap(t_stack **stack_a, t_stack **stack_b)
-{
-	int	size_sa;
-
-	size_sa = ft_lstsize(*stack_a);
-	if (size_sa == 2 && !(is_sort(stack_a)))
-		write_sa(stack_a);
-	else if (size_sa == 3)
-		sort_3(stack_a);
-	else if (size_sa < 10 && !(is_sort(stack_a)))
-		sort_small(stack_a, stack_b);
-	else if (size_sa >= 10 && !(is_sort(stack_a)))
-		sort_big(stack_a, stack_b);
-}
+#include "checker.h"
 
 int	count_av(char **av2)
 {
@@ -70,6 +55,14 @@ t_stack	*argv_is_2(char **av)
 	return (stack_a);
 }
 
+void	ft_sorted(t_stack **stack_a, t_stack **stack_b)
+{
+	if (!check_pile(stack_a, stack_b))
+		write(1, "KO\n", 3);
+	else if (check_pile(stack_a, stack_b))
+		write(1, "OK\n", 3);
+}
+
 int	main(int ac, char **av)
 {
 	t_stack	*stack_a;
@@ -90,7 +83,8 @@ int	main(int ac, char **av)
 		stack_a = fill_stack_value(ac, av);
 	}
 	stack_b = NULL;
-	push_swap(&stack_a, &stack_b);
+	start_checker(&stack_a, &stack_b);
+	ft_sorted(&stack_a, &stack_b);
 	ft_free(stack_a);
 	ft_free(stack_b);
 	return (0);

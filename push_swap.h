@@ -5,13 +5,17 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mapoirie <mapoirie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/23 17:56:18 by mapoirie          #+#    #+#             */
-/*   Updated: 2023/06/27 09:10:50 by mapoirie         ###   ########.fr       */
+/*   Created: 2023/06/29 10:10:25 by mapoirie          #+#    #+#             */
+/*   Updated: 2023/06/29 11:39:50 by mapoirie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
+
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 1
+# endif
 
 # include <unistd.h>
 # include <stdio.h>
@@ -30,6 +34,7 @@ typedef struct s_stack
 int			main(int ac, char **av);
 int			count_av(char **av2);
 t_stack		*argv_is_2(char **av);
+void		free_av2(char **av2);
 void		push_swap(t_stack **stack_a, t_stack **stack_b);
 
 // ---------------------- split ---------------------

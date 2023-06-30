@@ -1,43 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   swap_utils.c                                       :+:      :+:    :+:   */
+/*   checker_utils2.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mapoirie <mapoirie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/26 10:59:46 by mapoirie          #+#    #+#             */
-/*   Updated: 2023/06/29 16:30:17 by mapoirie         ###   ########.fr       */
+/*   Created: 2023/06/29 09:50:24 by mapoirie          #+#    #+#             */
+/*   Updated: 2023/06/29 11:48:18 by mapoirie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
-
-int	ft_lstsize(t_stack *stack)
-{
-	int	i;
-
-	i = 0;
-	if (!stack)
-		return (0);
-	while (stack)
-	{
-		stack = stack->next;
-		i++;
-	}
-	return (i);
-}
-
-void	ft_free(t_stack	*stack)
-{
-	t_stack	*temp;
-
-	while (stack)
-	{
-		temp = stack->next;
-		free(stack);
-		stack = temp;
-	}
-}
+#include "checker.h"
 
 int	ft_strcmp(char *str1, char *str2)
 {
